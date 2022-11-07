@@ -3,7 +3,7 @@
 	"description": "Security module for figuren.theater",
     "type": "wordpress-muplugin",
     "license": "GPL-2",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "extra": {
         "installer-name": "Security"
     },
@@ -13,7 +13,7 @@
 			"inc/password/namespace.php",
 			"inc/passwords-evolved/namespace.php",
 			"inc/wps-hide-login/namespace.php",
-			"inc/namespace.php",
+			"inc/namespace.php"
 		],
         "classmap": [
             "inc/"
