@@ -12,6 +12,7 @@ use Figuren_Theater\Options;
 use function add_action;
 
 const BASENAME = 'passwords-evolved/passwords-evolved.php';
+const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
 
 /**
  * Bootstrap module, when enabled.
@@ -25,7 +26,7 @@ function bootstrap() {
 
 function load_plugin() {
 
-	require_once FT_VENDOR_DIR . '/' . BASENAME;
+	require_once PLUGINPATH;
 }
 
 
