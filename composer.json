@@ -3,7 +3,7 @@
 	"description": "Security module for figuren.theater",
     "type": "wordpress-muplugin",
     "license": "GPL-2",
-    "version": "1.0.2",
+    "version": "1.0.3",
 	"autoload": {
 		"files": [
 			"inc/email-address-encoder/namespace.php",
