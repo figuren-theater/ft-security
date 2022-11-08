@@ -9,6 +9,8 @@ namespace Figuren_Theater\Security\Wps_Hide_Login;
 
 use Figuren_Theater\Options;
 
+use WPS\WPS_Hide_Login;
+
 use function add_action;
 use function remove_submenu_page;
 
