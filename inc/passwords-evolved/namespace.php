@@ -7,11 +7,14 @@
 
 namespace Figuren_Theater\Security\Passwords_Evolved;
 
+use FT_VENDOR_DIR;
+
 use Figuren_Theater\Options;
 
 use function add_action;
+use function remove_submenu_page;
 
-const BASENAME = 'passwords-evolved/passwords-evolved.php';
+const BASENAME   = 'passwords-evolved/passwords-evolved.php';
 const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
 
 /**
@@ -27,6 +30,8 @@ function bootstrap() {
 function load_plugin() {
 
 	require_once PLUGINPATH;
+
+	add_action( 'network_admin_menu', __NAMESPACE__ . '\\remove_menu', 11 );
 }
 
 
@@ -50,4 +55,8 @@ function filter_options() {
 		BASENAME,
 		'site_option'
 	);
+}
+
+function remove_menu() : void {
+	remove_submenu_page( 'settings.php', 'passwords-evolved' );
 }

@@ -7,11 +7,14 @@
 
 namespace Figuren_Theater\Security\Wps_Hide_Login;
 
+use FT_VENDOR_DIR;
+
 use Figuren_Theater\Options;
 
 use WPS\WPS_Hide_Login;
 
 use function add_action;
+use function add_filter;
 use function remove_submenu_page;
 
 const BASENAME   = 'wps-hide-login/wps-hide-login.php';
@@ -69,8 +72,17 @@ function plugins_loaded_wps_hide_login_plugin() {
 
 	// load_plugin_textdomain( 'wps-hide-login', false, dirname( WPS_HIDE_LOGIN_BASENAME ) . '/languages' );
 #	load_plugin_textdomain( 'wps-hide-login', false, $_rel_path );
+
+
+	add_filter( 'load_textdomain_mofile', __NAMESPACE__ . '\\unload_i18n', 0, 2 );
 }
 
+function unload_i18n( string $mofile, string $domain ) : string {
+	if ( 'wps-hide-login' === $domain ) {
+		return '';
+	}
+	return $mofile;
+}
 
 
 

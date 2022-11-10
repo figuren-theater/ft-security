@@ -7,21 +7,29 @@
 
 namespace Figuren_Theater\Security;
 
-use Altis;
+use WP_ENVIRONMENT_TYPE;
+
+use function Altis\register_module;
+
 
 /**
  * Register module.
  */
 function register() {
+
+	$default_settings = [
+		'enabled' => true, // needs to be set
+		'limit-login-attempts-reloaded' => 'local' !== WP_ENVIRONMENT_TYPE,
+	];
+	$options = [
+		'defaults' => $default_settings,
+	];
+
 	Altis\register_module(
 		'security',
 		DIRECTORY,
 		'Security',
-		[
-			'defaults' => [
-				'enabled' => true,
-			],
-		],
+		$options,
 		__NAMESPACE__ . '\\bootstrap'
 	);
 }
@@ -32,7 +40,8 @@ function register() {
 function bootstrap() {
 
 	Email_Address_Encoder\bootstrap();
-	Password\bootstrap();
+	Limit_Login_Attempts_Reloaded\bootstrap();
+	Passwords_Not_Weak\bootstrap();
 	Passwords_Evolved\bootstrap();
 	Wps_Hide_Login\bootstrap();
 }

@@ -7,12 +7,16 @@
 
 namespace Figuren_Theater\Security\Email_Address_Encoder;
 
+use FT_VENDOR_DIR;
+
 use Figuren_Theater\Options;
 
 use function add_action;
+use function add_filter;
+use function remove_action;
 use function remove_submenu_page;
 
-const BASENAME = 'email-address-encoder/email-address-encoder.php';
+const BASENAME   = 'email-address-encoder/email-address-encoder.php';
 const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
 
 /**
@@ -25,7 +29,7 @@ function bootstrap() {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 	
-	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin' );
+	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin', 9 );
 }
 
 function load_plugin() {
@@ -33,8 +37,20 @@ function load_plugin() {
 	require_once PLUGINPATH;
 	
 	add_action( 'admin_menu', __NAMESPACE__ . '\\remove_menu', 11 );
+
+	// remove_action( 'plugins_loaded', 'eae_load_textdomain' ); // not working :(
+	add_filter( 'load_textdomain_mofile', __NAMESPACE__ . '\\unload_i18n', 0, 2 );
+
+	//
+	remove_action( 'admin_enqueue_scripts', 'eae_enqueue_admin_scripts' );
 }
 
+function unload_i18n( string $mofile, string $domain ) : string {
+	if ( 'email-address-encoder' === $domain ) {
+		return '';
+	}
+	return $mofile;
+}
 
 function filter_options() {
 	
@@ -66,5 +82,7 @@ function filter_options() {
 }
 
 function remove_menu() : void {
+	
+	//
 	remove_submenu_page( 'options-general.php', 'eae' );
 }
