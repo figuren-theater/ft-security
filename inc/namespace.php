@@ -9,6 +9,7 @@ namespace Figuren_Theater\Security;
 
 use WP_ENVIRONMENT_TYPE;
 
+use Altis;
 use function Altis\register_module;
 
 
