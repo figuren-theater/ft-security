@@ -115,12 +115,11 @@ function remove_menu() : void {
 
 function remove_settings_section() {
 	/**
-	 * there is no remove_settings_section()
+	 * There is no remove_settings_section(), since this ticket was opened in 2012.
 	 *
 	 * @see  https://core.trac.wordpress.org/ticket/37355
 	 */
 	global $wp_settings_sections;
-	// \do_action( 'qm/debug', $wp_settings_sections );
 
-	unset( $wp_settings_sections[ 'general' ][ 'wps-hide-login-section' ] );
+	unset( $wp_settings_sections['general']['wps-hide-login-section'] );
 }

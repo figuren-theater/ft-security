@@ -34,10 +34,21 @@ function load_plugin() {
 	$config = Figuren_Theater\get_config()['modules']['security'];
 	if ( ! $config['limit-login-attempts-reloaded'] )
 		return; // early
-
+	
+	// the plugin checks for is_plugin_active_for_network()
+	// so we need to filter 'active_sitewide_plugins'
+	add_filter( 'site_option_active_sitewide_plugins', __NAMESPACE__ . '\\filter_site_option', 0 );
+	
 	require_once PLUGINPATH;
 
 	add_action( 'network_admin_menu', __NAMESPACE__ . '\\remove_admin_notice', 11 );
+
+	add_action( 'network_admin_menu', __NAMESPACE__ . '\\remove_menu', 11 );
+}
+
+function filter_site_option( $active_sitewide_plugins ) {
+	$active_sitewide_plugins[ BASENAME ] = BASENAME;
+	return $active_sitewide_plugins;
 }
 
 
@@ -47,7 +58,7 @@ function filter_options() {
 		'limit_login_allow_local_options'            => 0, // do not use FALSE, because it gets handled as "non existing option", so the query will be done
 
 		// not only 'activation', but also the 'last updated' timestamp
-		'limit_login_activation_timestamp'           => filemtime ( PLUGINPATH ),
+		'limit_login_activation_timestamp'           => filemtime( PLUGINPATH ),
 		'limit_login_notice_enable_notify_timestamp' => time(),
 		'limit_login_active_app'                     => 'local',
 		'limit_login_admin_notify_email'             => getenv( 'FT_SECURITY_LLAR_EMAIL' ),
@@ -65,9 +76,9 @@ function filter_options() {
 		'limit_login_notify_email_after'             => 4,
 		// 'limit_login_retries'                        => a:0:{},	
 		// 'limit_login_retries_valid'                  => a:0:{},	
-		'limit_login_trusted_ip_origins'             => ["REMOTE_ADDR"],
+		'limit_login_trusted_ip_origins'             => [ 'REMOTE_ADDR' ],
 		'limit_login_valid_duration'                 => 43200,
-		'limit_login_app_setup_link'                 => 0, //Premium-related // do not use FALSE ...
+		'limit_login_app_setup_link'                 => 0, // Premium-related // do not use FALSE ...
 		'limit_login_show_top_level_menu_item'       => 0,
 		'limit_login_hide_dashboard_widget'          => true,
 		'limit_login_show_warning_badge'             => 0, // new in 2.25.3
@@ -85,11 +96,13 @@ function filter_options() {
 
 /**
  * Disables the annoying dashboard admin notice to leave a review on the plugin.
- *
  */
 function remove_admin_notice() : void {
 
 	global $limit_login_attempts_obj;
-	
 	remove_action( 'admin_notices', [ $limit_login_attempts_obj, 'show_leave_review_notice' ] );
+}
+
+function remove_menu() : void {
+	remove_submenu_page( 'settings.php', 'limit-login-attempts' );
 }
