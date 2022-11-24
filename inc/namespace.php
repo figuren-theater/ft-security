@@ -19,9 +19,10 @@ use function Altis\register_module;
 function register() {
 
 	$default_settings = [
-		'enabled' => true, // needs to be set
+		'enabled'                       => true, // needs to be set
 		'limit-login-attempts-reloaded' => 'local' !== WP_ENVIRONMENT_TYPE,
 	];
+	
 	$options = [
 		'defaults' => $default_settings,
 	];
@@ -44,5 +45,6 @@ function bootstrap() {
 	Limit_Login_Attempts_Reloaded\bootstrap();
 	Passwords_Not_Weak\bootstrap();
 	Passwords_Evolved\bootstrap();
+	WP_Author_Slug\bootstrap();
 	Wps_Hide_Login\bootstrap();
 }

@@ -2,7 +2,7 @@
 /**
  * Figuren_Theater Security Email_Address_Encoder.
  *
- * @package figuren-theater/security/multisite_enhancements
+ * @package figuren-theater/security/email_address_encoder
  */
 
 namespace Figuren_Theater\Security\Email_Address_Encoder;
