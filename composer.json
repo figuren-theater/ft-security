@@ -1,16 +1,30 @@
 {
 	"name": "figuren-theater/ft-security",
-	"description": "Security module for figuren.theater",
+	"description": "Security module for all sites of the figuren.theater multisite network.",
+    "homepage": "https://websites.fuer.figuren.theater",
     "type": "wordpress-muplugin",
+    "keywords": ["wordpress", "security", "anti-spam", "brute-force-protection", "haveibeenpwned"],
     "license": "GPL-3.0-or-later",
-	"authors": [
-		{
-			"name": "figuren.theater",
-			"email": "info@figuren.theater"
-		}
-	],
+    "authors": [
+        {
+            "name": "figuren.theater",
+            "email": "info@figuren.theater"
+        },
+        {
+            "name": "Carsten Bach",
+            "email": "mail@carsten-bach.de",
+            "homepage": "https://carsten-bach.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "info@figuren.theater",
+        "issues": "https://github.com/figuren-theater/ft-security/issues",
+        "source": "https://github.com/figuren-theater/ft-security"
+    },
 	"autoload": {
 		"files": [
+			"inc/configure-smtp/namespace.php",
 			"inc/email-address-encoder/namespace.php",
 			"inc/limit-login-attempts-reloaded/namespace.php",
 			"inc/passwords-not-weak/namespace.php",
@@ -36,6 +50,7 @@
 	"require": {
         "php": ">=7.1",
         "figuren-theater/ft-options": "^1",
+        "wpackagist-plugin/configure-smtp":"3.1",
         "wpackagist-plugin/email-address-encoder": "1.0.22",
         "wpackagist-plugin/limit-login-attempts-reloaded":"2.25.8",
         "wpackagist-plugin/passwords-evolved": "1.3.3",
@@ -45,6 +60,7 @@
     "extra": {
         "altis": {
             "install-overrides": [
+                "wpackagist-plugin/configure-smtp",
 				"wpackagist-plugin/email-address-encoder",
 				"wpackagist-plugin/limit-login-attempts-reloaded",
 				"wpackagist-plugin/passwords-evolved",

@@ -9,6 +9,7 @@ Security related components for a WordPress Multisite plattform like [figuren.th
 This package contains the following plugins. 
 Thoose are completely managed by code and lack of their typical UI.
 
+* [Configure SMTP](https://wordpress.org/plugins/configure-smtp/#developers)
 * [Email Address Encoder](https://wordpress.org/plugins/email-address-encoder/#developers)
 * [Limit Login Attempts Reloaded](https://wordpress.org/plugins/limit-login-attempts-reloaded/#developers)
 * [Passwords Evolved](https://wordpress.org/plugins/passwords-evolved/#developers)

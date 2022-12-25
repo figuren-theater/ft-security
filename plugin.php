@@ -2,12 +2,12 @@
 /**
  * Plugin Name:     figuren.theater | Security
  * Plugin URI:      https://github.com/figuren-theater/ft-security
- * Description:     Security related components for a WordPress Multisite plattform like figuren.theater
+ * Description:     Security module for all sites of the figuren.theater multisite network.
  * Author:          figuren.theater
  * Author URI:      https://figuren.theater
  * Text Domain:     figurentheater
  * Domain Path:     /languages
- * Version:         1.0.12
+ * Version:         1.0.13
  *
  * @package         figuren-theater/security
  */

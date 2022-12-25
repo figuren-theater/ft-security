@@ -41,10 +41,14 @@ function register() {
  */
 function bootstrap() {
 
+	// Plugins
+	Configure_SMTP\bootstrap();
 	Email_Address_Encoder\bootstrap();
 	Limit_Login_Attempts_Reloaded\bootstrap();
-	Passwords_Not_Weak\bootstrap();
 	Passwords_Evolved\bootstrap();
 	WP_Author_Slug\bootstrap();
 	Wps_Hide_Login\bootstrap();
+	
+	// Best practices
+	Passwords_Not_Weak\bootstrap();
 }
