@@ -21,6 +21,7 @@ function register() {
 	$default_settings = [
 		'enabled'                       => true, // needs to be set
 		'limit-login-attempts-reloaded' => 'local' !== WP_ENVIRONMENT_TYPE,
+		'wp-smtp-mailer'                => 'local' !== WP_ENVIRONMENT_TYPE,
 	];
 	
 	$options = [
@@ -42,11 +43,11 @@ function register() {
 function bootstrap() {
 
 	// Plugins
-	Configure_SMTP\bootstrap();
 	Email_Address_Encoder\bootstrap();
 	Limit_Login_Attempts_Reloaded\bootstrap();
 	Passwords_Evolved\bootstrap();
 	WP_Author_Slug\bootstrap();
+	WP_SMTP_Mailer\bootstrap();
 	Wps_Hide_Login\bootstrap();
 	
 	// Best practices
