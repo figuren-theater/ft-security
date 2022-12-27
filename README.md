@@ -20,5 +20,9 @@ Thoose are completely managed by code and lack of their typical UI.
 Accompaniying the core functionality of the mentioned plugins, theese **best practices** are included with this package.
 
 - Do not allow weak passwords!
+- Require strong passwords, with
+  - At least 8 characters in length.
+  - The user name and password can’t be the same.
+  - Passwords must have at least one number, one lowercase character, one uppercase and one symbol.
 - Send Emails via SMTP.
 

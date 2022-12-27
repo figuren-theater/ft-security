@@ -26,8 +26,9 @@
 		"files": [
 			"inc/email-address-encoder/namespace.php",
 			"inc/limit-login-attempts-reloaded/namespace.php",
-			"inc/passwords-not-weak/namespace.php",
 			"inc/passwords-evolved/namespace.php",
+			"inc/passwords-not-weak/namespace.php",
+            "inc/passwords-strong/namespace.php",
 			"inc/smtp/namespace.php",
 			"inc/wp-author-slug/namespace.php",
 			"inc/wps-hide-login/namespace.php",

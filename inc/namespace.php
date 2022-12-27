@@ -51,5 +51,6 @@ function bootstrap() {
 	
 	// Best practices
 	Passwords_Not_Weak\bootstrap();
+	Passwords_Strong\bootstrap();
 	SMTP\bootstrap();
 }
