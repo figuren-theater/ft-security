@@ -15,8 +15,11 @@
 
 namespace Figuren_Theater\Security\Passwords_Strong;
 
+use WP_Error;
+
 use function __;
 use function add_action;
+use function add_filter;
 use function is_wp_error;
 use function sanitize_text_field;
 
@@ -35,7 +38,9 @@ function bootstrap() {
  * Initialise constants and handlers.
  */
 function load() {
+	// called from wp-admin/includes/user.php
 	add_action( 'user_profile_update_errors', __NAMESPACE__ . '\\user_profile_update_errors', 0, 3 );
+	// called from wp-login.php
 	add_action( 'resetpass_form', __NAMESPACE__ . '\\resetpass_form', 10 );
 	add_action( 'validate_password_reset', __NAMESPACE__ . '\\validate_password_reset', 10, 2 );
 }
@@ -76,7 +81,10 @@ function validate_password_reset( $errors, $user_data) {
 	} elseif (empty( $user_name )) {
 		$error_message = __( 'User name cannot be empty.' );
 	} elseif ( ! ( $is_password_ok  = is_password_ok( $password , $user_name ) ) ) {
-		$error_message = __( 'Password is not strong enough.' );
+		$error_message = apply_filters( 
+			__NAMESPACE__ . '\\error',
+			__( 'Password is not strong enough.' )
+		);
 	} else {
 		// Password is strong enough. All OK.
 	}
@@ -103,24 +111,92 @@ function is_password_ok( string $password, string $user_name) : bool {
 	$password  = sanitize_text_field( $password );
 	$user_name = sanitize_text_field( $user_name );
 
+	$is_long_enough     = ( strlen( $password ) > 8 );
+	$is_not_username    = ( strtolower( $user_name ) !== strtolower( $password ) );
 	$is_number_found    = preg_match( '/[0-9]/', $password );
 	$is_lowercase_found = preg_match( '/[a-z]/', $password );
 	$is_uppercase_found = preg_match( '/[A-Z]/', $password );
 	$is_symbol_found    = preg_match( '/[^a-zA-Z0-9]/', $password );
 
-	if ( strlen( $password ) < 8 ) {
+	if ( ! $is_long_enough ) {
 		// Too short
-	} elseif ( strtolower( $user_name ) == strtolower( $password ) ) {
+		add_filter( 
+			__NAMESPACE__ . '\\error', 
+			function ( string $error ) : string {
+				return $error . PHP_EOL . PHP_EOL .
+					__( 'Your password must have at least 8 characters.', 'figurentheater');
+			},
+			10,
+			1
+		);
+	}
+
+	if ( ! $is_not_username ) {
 		// User name and password can't be the same.
-	} elseif ( ! $is_number_found ) {
+		add_filter( 
+			__NAMESPACE__ . '\\error', 
+			function ( string $error ) : string {
+				return $error . PHP_EOL . PHP_EOL .
+					__( 'Your User name and password can\'t be the same.', 'figurentheater');
+			},
+			10,
+			1
+		);
+	}
+
+	if ( ! $is_number_found ) {
 		// ...
-	} elseif ( ! $is_lowercase_found ) {
+		add_filter( 
+			__NAMESPACE__ . '\\error', 
+			function ( string $error ) : string {
+				return $error . PHP_EOL .
+					__( 'Your password must contain at least one number.', 'figurentheater');
+			},
+			10,
+			1
+		);
+	}
+
+	if ( ! $is_lowercase_found ) {
 		// ...
-	} elseif ( ! $is_uppercase_found ) {
+		add_filter( 
+			__NAMESPACE__ . '\\error', 
+			function ( string $error ) : string {
+				return $error . PHP_EOL . PHP_EOL .
+					__( 'Your password must contain at least one lowercase letter.', 'figurentheater');
+			},
+			10,
+			1
+		);
+	}
+
+	if ( ! $is_uppercase_found ) {
 		// ...
-	} elseif ( ! $is_symbol_found ) {
+		add_filter( 
+			__NAMESPACE__ . '\\error', 
+			function ( string $error ) : string {
+				return $error . PHP_EOL .
+					__( 'Your password must contain at least one uppercase letter.', 'figurentheater');
+			},
+			10,
+			1
+		);
+	}
+
+	if ( ! $is_symbol_found ) {
 		// ...
-	} else {
+		add_filter( 
+			__NAMESPACE__ . '\\error', 
+			function ( string $error ) : string {
+				return $error . PHP_EOL .
+					__( 'Your password must contain at least one symbol.', 'figurentheater');
+			},
+			10,
+			1
+		);
+	} 
+
+	if ( $is_long_enough && $is_not_username && $is_number_found && $is_lowercase_found && $is_uppercase_found && $is_symbol_found ) {
 		// Password is OK.
 		$is_ok = true;
 	}
