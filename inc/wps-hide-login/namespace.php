@@ -15,6 +15,7 @@ use WPS\WPS_Hide_Login;
 
 use function add_action;
 use function add_filter;
+use function remove_action;
 use function remove_submenu_page;
 
 const BASENAME   = 'wps-hide-login/wps-hide-login.php';
@@ -65,7 +66,7 @@ function load_plugin() {
 }
 
 function plugins_loaded_wps_hide_login_plugin() {
-	WPS_Hide_Login\Plugin::get_instance();
+	$_wps_plugin = WPS_Hide_Login\Plugin::get_instance();
 
 	// paath relative to WP_PLUGIN_DIR
 #	$_rel_path = '../../vendor/' . WPS_HIDE_LOGIN_FOLDER . '/languages';
@@ -75,6 +76,11 @@ function plugins_loaded_wps_hide_login_plugin() {
 
 
 	add_filter( 'load_textdomain_mofile', __NAMESPACE__ . '\\unload_i18n', 0, 2 );
+
+	// prevent an admin_notice which shows an updated login_url even, 
+	// if it was not updated (because its defined in code)
+	// on the general options page.
+	remove_action( 'admin_notices', array( $_wps_plugin, 'admin_notices' ) );
 }
 
 function unload_i18n( string $mofile, string $domain ) : string {
