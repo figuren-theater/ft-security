@@ -96,7 +96,7 @@ function filter_options() {
 	
 	$_options = [
 		'whl_page'           => getenv( 'FT_SECURITY_LOGIN_SLUG' ),
-		'whl_redirect_admin' => 'wp-admin/wissen-ist-macht',
+		'whl_redirect_admin' => 'wissen-ist-macht',
 		'whl_redirect'       => null, // deprecated and unused, but not uncalled. The plugin looks if this exists and wants to delete_option() if any, so we add a nice return to prevent the lookup
 	];
 
