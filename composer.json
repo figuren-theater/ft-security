@@ -24,7 +24,8 @@
     },
 	"autoload": {
 		"files": [
-			"inc/email-address-encoder/namespace.php",
+			"inc/disable-login-errors/namespace.php",
+            "inc/email-address-encoder/namespace.php",
 			"inc/limit-login-attempts-reloaded/namespace.php",
 			"inc/passwords-evolved/namespace.php",
 			"inc/passwords-not-weak/namespace.php",

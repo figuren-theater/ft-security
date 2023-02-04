@@ -50,6 +50,7 @@ function bootstrap() {
 	Wps_Hide_Login\bootstrap();
 	
 	// Best practices
+	Disable_Login_Errors\bootstrap();
 	Passwords_Not_Weak\bootstrap();
 	Passwords_Strong\bootstrap();
 	SMTP\bootstrap();
