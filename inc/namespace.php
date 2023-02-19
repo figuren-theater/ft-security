@@ -22,6 +22,7 @@ function register() {
 		'enabled'                       => true, // needs to be set
 		'limit-login-attempts-reloaded' => 'local' !== WP_ENVIRONMENT_TYPE,
 		'smtp'                          => 'local' !== WP_ENVIRONMENT_TYPE,
+		'two-factor'                    => 'local' !== WP_ENVIRONMENT_TYPE,
 	];
 	
 	$options = [
@@ -46,6 +47,7 @@ function bootstrap() {
 	Email_Address_Encoder\bootstrap();
 	Limit_Login_Attempts_Reloaded\bootstrap();
 	Passwords_Evolved\bootstrap();
+	Two_Factor\bootstrap();
 	WP_Author_Slug\bootstrap();
 	Wps_Hide_Login\bootstrap();
 	

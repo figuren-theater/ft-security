@@ -1,9 +1,9 @@
 {
 	"name": "figuren-theater/ft-security",
-	"description": "Security module for all sites of the figuren.theater multisite network.",
+	"description": "Security related components for a WordPress Multisite network, like figuren.theater",
     "homepage": "https://websites.fuer.figuren.theater",
     "type": "wordpress-muplugin",
-    "keywords": ["wordpress", "security", "anti-spam", "brute-force-protection", "haveibeenpwned"],
+    "keywords": ["wordpress", "security", "anti-spam", "brute-force-protection", "haveibeenpwned", "passwords-strength", "two-factor"],
     "license": "GPL-3.0-or-later",
     "authors": [
         {
@@ -31,7 +31,8 @@
 			"inc/passwords-not-weak/namespace.php",
             "inc/passwords-strong/namespace.php",
 			"inc/smtp/namespace.php",
-			"inc/wp-author-slug/namespace.php",
+			"inc/two-factor/namespace.php",
+            "inc/wp-author-slug/namespace.php",
 			"inc/wps-hide-login/namespace.php",
 			"inc/namespace.php"
 		],
@@ -55,7 +56,8 @@
         "wpackagist-plugin/email-address-encoder": "^1.0",
         "wpackagist-plugin/limit-login-attempts-reloaded":"^2.25",
         "wpackagist-plugin/passwords-evolved": "^1",
-        "wpackagist-plugin/wp-author-slug":"4",
+        "wpackagist-plugin/two-factor":"^0.7",
+        "wpackagist-plugin/wp-author-slug":"^4",
         "wpackagist-plugin/wps-hide-login": "^1.9"
 	},
     "extra": {
@@ -64,7 +66,8 @@
 				"wpackagist-plugin/email-address-encoder",
 				"wpackagist-plugin/limit-login-attempts-reloaded",
 				"wpackagist-plugin/passwords-evolved",
-				"wpackagist-plugin/wp-author-slug",
+				"wpackagist-plugin/two-factor",
+                "wpackagist-plugin/wp-author-slug",
 				"wpackagist-plugin/wps-hide-login"
             ]
         }
