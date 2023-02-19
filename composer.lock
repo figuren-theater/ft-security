@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d45bf472af9d35cc46029e425ed02903",
+    "content-hash": "fc82d41d66e7dcf8ab0e7f09128cf138",
     "packages": [
         {
             "name": "composer/installers",
@@ -298,6 +298,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/passwords-evolved/"
+        },
+        {
+            "name": "wpackagist-plugin/two-factor",
+            "version": "0.7.3",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/two-factor/",
+                "reference": "tags/0.7.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/two-factor.0.7.3.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/two-factor/"
         },
         {
             "name": "wpackagist-plugin/wp-author-slug",
