@@ -75,13 +75,15 @@ Thoose are completely managed by code and lack of their typical UI.
 
 Accompaniying the core functionality of the mentioned plugins, theese **best practices** are included with this package.
 
-[X] Disable all login-error hints, that are related to username or password.
-[X] Do not allow weak passwords!
-[X] Require strong passwords, with
-  [X] At least 8 characters in length.
-  [X] The user name and password can’t be the same.
-  [X] Passwords must have at least one number, one lowercase character, one uppercase and one symbol.
-[X] Send Emails via SMTP.
+
+- [X] Disable all login-error hints, that are related to username or password.
+- [X] Do not allow weak passwords!
+- [X] Require strong passwords, with
+  - [X] At least 8 characters in length.
+  - [X] The user name and password can’t be the same.
+  - [X] Passwords must have at least one number, one lowercase character, one uppercase and one symbol.
+- [X] Send Emails via SMTP.
+
 
 
 ## Built with & uses

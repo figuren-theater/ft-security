@@ -1,6 +1,6 @@
 {
 	"name": "figuren-theater/ft-security",
-	"description": "Security module for all sites of the figuren.theater multisite network.",
+	"description": "Security related components for a WordPress Multisite network, like figuren.theater",
     "homepage": "https://websites.fuer.figuren.theater",
     "type": "wordpress-muplugin",
     "keywords": ["wordpress", "security", "anti-spam", "brute-force-protection", "haveibeenpwned", "passwords-strength", "two-factor"],
