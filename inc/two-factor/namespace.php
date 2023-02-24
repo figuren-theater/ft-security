@@ -43,7 +43,7 @@ function load_plugin() {
 	// add_filter( 'two_factor_token_email_subject', '');
 	// add_filter( 'two_factor_token_email_message', '');
 	// add_filter( 'two_factor_rememberme', '__return_false' ); // false is the default
-	add_filter( 'two_factor_providers', __NAMESPACE__ . '\\remove_2fa_dummy_provider' );
+	add_filter( 'two_factor_providers', __NAMESPACE__ . '\\remove_providers' );
 	add_filter( 'two_factor_enabled_providers_for_user', __NAMESPACE__ . '\\enable_email_provider' );
 	add_filter( 'two_factor_primary_provider_for_user', __NAMESPACE__ . '\\email_as_default_primary_provider', 10, 2 );
 	
@@ -63,10 +63,23 @@ function load_plugin() {
  * @param array $providers 2FA providers list.
  * @return array
  */
-function remove_2fa_dummy_provider( array $providers ) : array {
+function remove_providers( array $providers ) : array {
 	if ( isset( $providers['Two_Factor_Dummy'] ) ) {
 		unset( $providers['Two_Factor_Dummy'] );
 	}
+
+	/**
+	 * TEMP
+	 * 
+	 * Disable FIDO keys until plugin version 0.8.0 is released
+	 * and the issue will hopefully be fixed.
+	 *
+	 * @see  https://github.com/figuren-theater/ft-security/issues/9
+	 */
+	if ( isset( $providers['Two_Factor_FIDO_U2F'] ) ) {
+		unset( $providers['Two_Factor_FIDO_U2F'] );
+	}
+
 	return $providers;
 }
 
