@@ -15,6 +15,8 @@ use WP_INSTALLING;
 
 use function add_action;
 use function add_filter;
+use function get_userdata;
+use function wp_strip_all_tags;
 
 const BASENAME   = 'two-factor/two-factor.php';
 const PLUGINPATH = FT_VENDOR_DIR . '/wpackagist-plugin/' . BASENAME;
@@ -41,16 +43,11 @@ function load_plugin() {
 	require_once PLUGINPATH;
 
 	// add_filter( 'two_factor_token_email_subject', '');
-	// add_filter( 'two_factor_token_email_message', '');
+	add_filter( 'two_factor_token_email_message', __NAMESPACE__ . '\\email_message' );
 	// add_filter( 'two_factor_rememberme', '__return_false' ); // false is the default
-	add_filter( 'two_factor_providers', __NAMESPACE__ . '\\remove_2fa_dummy_provider' );
+	add_filter( 'two_factor_providers', __NAMESPACE__ . '\\remove_providers' );
 	add_filter( 'two_factor_enabled_providers_for_user', __NAMESPACE__ . '\\enable_email_provider' );
 	add_filter( 'two_factor_primary_provider_for_user', __NAMESPACE__ . '\\email_as_default_primary_provider', 10, 2 );
-	
-	// ONLY avail. in humanmade/two-factor fork
-	// add_filter( 'two_factor_universally_forced', __NAMESPACE__ . '\\override_two_factor_universally_forced' );
-	// ONLY avail. in humanmade/two-factor fork
-	// add_filter( 'two_factor_forced_user_roles', __NAMESPACE__ . '\\override_two_factor_forced_user_roles' );
 }
 
 
@@ -63,10 +60,23 @@ function load_plugin() {
  * @param array $providers 2FA providers list.
  * @return array
  */
-function remove_2fa_dummy_provider( array $providers ) : array {
+function remove_providers( array $providers ) : array {
 	if ( isset( $providers['Two_Factor_Dummy'] ) ) {
 		unset( $providers['Two_Factor_Dummy'] );
 	}
+
+	/**
+	 * TEMP
+	 * 
+	 * Disable FIDO keys until plugin version 0.8.0 is released
+	 * and the issue will hopefully be fixed.
+	 *
+	 * @see  https://github.com/figuren-theater/ft-security/issues/9
+	 */
+	if ( isset( $providers['Two_Factor_FIDO_U2F'] ) ) {
+		unset( $providers['Two_Factor_FIDO_U2F'] );
+	}
+
 	return $providers;
 }
 
@@ -103,41 +113,52 @@ function email_as_default_primary_provider( string $provider, int $user_id ) : s
 }
 
 
-/**
- * ONLY avail. in humanmade/two-factor fork
- * 
- * Override the two factor forced setting with values from the Altis configuration.
- *
- * @source https://github.com/humanmade/altis-security/blob/5312fb2078ce0ef6abdf27f53e9cb09c4899a00e/inc/namespace.php#L116
- * 
- * @param bool $is_forced If true forces 2FA to be required.
- * @return bool
-function override_two_factor_universally_forced( bool $is_forced ) : bool {
-	$config = Altis\get_config()['modules']['security']['2-factor-authentication'];
-	if ( is_array( $config ) && isset( $config['required'] ) && is_bool( $config['required'] ) ) {
-		return $config['required'];
-	}
+function email_message( string $message, string $token, int $user_id ) : string {
+	
+	/* translators: %s: token */
+	$message = wp_strip_all_tags( 
+		sprintf( 
+			__( 'Enter %s to log in.', 'two-factor' ),
+			// by using a dummy over here
+			// we can stay with the i18n
+			// and still and have the security of
+			// wp_strip_all_tags() on the 
+			// possible unsecure-transaltions 
+			// 
+			// $token
+			'DUMMYTOKEN'
+		)
+	);
 
-	return $is_forced;
+	// add a paragraph
+	$message = sprintf(
+		'<p>%s</p>',
+		$message
+	);
+
+
+	// now re-add the token
+	// and wrap in comments to make copy & paste easy
+	$message = str_replace(
+		'DUMMYTOKEN',
+		sprintf(
+			'<pre>%s</pre>',
+			$token
+		),
+		$message
+	);
+
+	//
+	$user = get_userdata( $user_id );
+	if ( false === $user )
+		return $message;
+
+	// Say 'hello'
+	$message  = sprintf(
+		'<h1 style="text-transform: uppercase;"><em style=" color:#d20394;">Hi</em> %s</h1>',
+		$user->user_login
+	) . "\r\n" . $message;
+
+	return $message;
 }
- */
 
-/**
- * ONLY avail. in humanmade/two-factor fork
- * 
- * Override the two factor forced setting for enabled roles with values
- * from the Altis configuration.
- *
- * @source https://github.com/humanmade/altis-security/blob/5312fb2078ce0ef6abdf27f53e9cb09c4899a00e/inc/namespace.php#L132
- * 
- * @param array|null $roles Roles required to use 2FA.
- * @return array|null
-function override_two_factor_forced_user_roles( $roles ) {
-	$config = Altis\get_config()['modules']['security']['2-factor-authentication'];
-	if ( ! empty( $config['required'] ) && is_array( $config['required'] ) ) {
-		return $config['required'];
-	}
-
-	return $roles;
-}
- */
