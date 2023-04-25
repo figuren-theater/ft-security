@@ -56,7 +56,7 @@
         "wpackagist-plugin/email-address-encoder": "^1.0",
         "wpackagist-plugin/limit-login-attempts-reloaded":"^2.25",
         "wpackagist-plugin/passwords-evolved": "^1",
-        "wpackagist-plugin/two-factor":"^0.7",
+        "wpackagist-plugin/two-factor":"^0.8",
         "wpackagist-plugin/wp-author-slug":"^4",
         "wpackagist-plugin/wps-hide-login": "^1.9"
 	},
