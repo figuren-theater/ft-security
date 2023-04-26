@@ -9,6 +9,9 @@ namespace Figuren_Theater\Security\Two_Factor;
 
 use FT_VENDOR_DIR;
 
+use Figuren_Theater;
+use function Figuren_Theater\get_config;
+
 use DOING_AUTOSAVE;
 use DOING_CRON;
 use WP_INSTALLING;
@@ -31,6 +34,10 @@ function bootstrap() {
 
 function load_plugin() {
 
+	$config = Figuren_Theater\get_config()['modules']['security'];
+	if ( ! $config['two-factor'] )
+		return; // early
+	
 	if ( defined( 'WP_INSTALLING' ) && WP_INSTALLING )
 		return;
 
