@@ -50,7 +50,7 @@ function load_plugin() {
 	require_once PLUGINPATH;
 
 	// add_filter( 'two_factor_token_email_subject', '');
-	add_filter( 'two_factor_token_email_message', __NAMESPACE__ . '\\email_message' );
+	add_filter( 'two_factor_token_email_message', __NAMESPACE__ . '\\email_message', 10, 3 );
 	// add_filter( 'two_factor_rememberme', '__return_false' ); // false is the default
 	add_filter( 'two_factor_providers', __NAMESPACE__ . '\\remove_providers' );
 	add_filter( 'two_factor_enabled_providers_for_user', __NAMESPACE__ . '\\enable_email_provider' );
