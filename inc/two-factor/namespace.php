@@ -9,6 +9,9 @@ namespace Figuren_Theater\Security\Two_Factor;
 
 use FT_VENDOR_DIR;
 
+use Figuren_Theater;
+use function Figuren_Theater\get_config;
+
 use DOING_AUTOSAVE;
 use DOING_CRON;
 use WP_INSTALLING;
@@ -31,6 +34,10 @@ function bootstrap() {
 
 function load_plugin() {
 
+	$config = Figuren_Theater\get_config()['modules']['security'];
+	if ( ! $config['two-factor'] )
+		return; // early
+	
 	if ( defined( 'WP_INSTALLING' ) && WP_INSTALLING )
 		return;
 
@@ -43,7 +50,7 @@ function load_plugin() {
 	require_once PLUGINPATH;
 
 	// add_filter( 'two_factor_token_email_subject', '');
-	add_filter( 'two_factor_token_email_message', __NAMESPACE__ . '\\email_message' );
+	add_filter( 'two_factor_token_email_message', __NAMESPACE__ . '\\email_message', 10, 3 );
 	// add_filter( 'two_factor_rememberme', '__return_false' ); // false is the default
 	add_filter( 'two_factor_providers', __NAMESPACE__ . '\\remove_providers' );
 	add_filter( 'two_factor_enabled_providers_for_user', __NAMESPACE__ . '\\enable_email_provider' );
