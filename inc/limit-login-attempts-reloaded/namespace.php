@@ -65,6 +65,7 @@ function filter_options() {
 		'limit_login_admin_notify_email'             => getenv( 'FT_SECURITY_LLAR_EMAIL' ),
 		'limit_login_allowed_lockouts'               => 4,
 		'limit_login_allowed_retries'                => 4,
+		'limit_login_auto_update_choice'             => 0,
 		'limit_login_gdpr'                           => 1,
 		'limit_login_lockout_duration'               => 1200,
 		// 'limit_login_lockout_duration'               => 0,	// DEBUG
