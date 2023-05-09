@@ -78,7 +78,7 @@ function filter_options() {
 		'limit_login_notify_email_after'             => 4,
 		// 'limit_login_retries'                        => a:0:{},	
 		// 'limit_login_retries_valid'                  => a:0:{},	
-		'limit_login_trusted_ip_origins'             => [ 'REMOTE_ADDR' ],
+		'limit_login_trusted_ip_origins'             => [ 'HTTP_X_REAL_IP','REMOTE_ADDR' ], // https://wordpress.org/support/topic/reverse-proxy-7/#post-16656462
 		'limit_login_valid_duration'                 => 43200,
 		'limit_login_app_setup_link'                 => 0, // Premium-related // do not use FALSE ...
 		'limit_login_show_top_level_menu_item'       => 0,
