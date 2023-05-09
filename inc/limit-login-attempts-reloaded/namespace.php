@@ -14,6 +14,7 @@ use Figuren_Theater\Options;
 use function Figuren_Theater\get_config;
 
 use function add_action;
+use function add_filter;
 use function remove_action;
 
 const BASENAME   = 'limit-login-attempts-reloaded/limit-login-attempts-reloaded.php';
@@ -64,6 +65,7 @@ function filter_options() {
 		'limit_login_admin_notify_email'             => getenv( 'FT_SECURITY_LLAR_EMAIL' ),
 		'limit_login_allowed_lockouts'               => 4,
 		'limit_login_allowed_retries'                => 4,
+		'limit_login_auto_update_choice'             => 0,
 		'limit_login_gdpr'                           => 1,
 		'limit_login_lockout_duration'               => 1200,
 		// 'limit_login_lockout_duration'               => 0,	// DEBUG
@@ -76,12 +78,17 @@ function filter_options() {
 		'limit_login_notify_email_after'             => 4,
 		// 'limit_login_retries'                        => a:0:{},	
 		// 'limit_login_retries_valid'                  => a:0:{},	
-		'limit_login_trusted_ip_origins'             => [ 'REMOTE_ADDR' ],
+		'limit_login_trusted_ip_origins'             => [ 'HTTP_X_REAL_IP','REMOTE_ADDR' ], // https://wordpress.org/support/topic/reverse-proxy-7/#post-16656462
 		'limit_login_valid_duration'                 => 43200,
 		'limit_login_app_setup_link'                 => 0, // Premium-related // do not use FALSE ...
 		'limit_login_show_top_level_menu_item'       => 0,
 		'limit_login_hide_dashboard_widget'          => true,
 		'limit_login_show_warning_badge'             => 0, // new in 2.25.3
+		'limit_login_whitelist'                      => [],
+		'limit_login_whitelist_usernames'            => [],
+		'limit_login_blacklist'                      => [],
+		'limit_login_blacklist_usernames'            => ['admin','administrator'],
+		'limit_login_review_notice_shown'            => 1,
 	];
 
 	// gets added to the 'OptionsCollection' 

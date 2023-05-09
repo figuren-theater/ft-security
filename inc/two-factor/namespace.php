@@ -125,7 +125,7 @@ function email_message( string $message, string $token, int $user_id ) : string 
 	/* translators: %s: token */
 	$message = wp_strip_all_tags( 
 		sprintf( 
-			__( 'Enter %s to log in.', 'two-factor' ),
+			__( 'Dein aktueller Login-Bestätigungs-Code lautet: %s', 'two-factor' ),
 			// by using a dummy over here
 			// we can stay with the i18n
 			// and still and have the security of
@@ -149,7 +149,7 @@ function email_message( string $message, string $token, int $user_id ) : string 
 	$message = str_replace(
 		'DUMMYTOKEN',
 		sprintf(
-			'<pre>%s</pre>',
+			'<pre style="display:block;font-size:32px;font-weight:bold;line-height:36px;text-align:center">%s</pre>',
 			$token
 		),
 		$message
