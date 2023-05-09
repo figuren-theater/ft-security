@@ -14,6 +14,7 @@ use Figuren_Theater\Options;
 use function Figuren_Theater\get_config;
 
 use function add_action;
+use function add_filter;
 use function remove_action;
 
 const BASENAME   = 'limit-login-attempts-reloaded/limit-login-attempts-reloaded.php';
