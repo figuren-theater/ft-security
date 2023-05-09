@@ -84,6 +84,11 @@ function filter_options() {
 		'limit_login_show_top_level_menu_item'       => 0,
 		'limit_login_hide_dashboard_widget'          => true,
 		'limit_login_show_warning_badge'             => 0, // new in 2.25.3
+		'limit_login_whitelist'                      => [],
+		'limit_login_whitelist_usernames'            => [],
+		'limit_login_blacklist'                      => [],
+		'limit_login_blacklist_usernames'            => ['admin','administrator'],
+		'limit_login_review_notice_shown'            => 1,
 	];
 
 	// gets added to the 'OptionsCollection' 
