@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<ruleset name="ft-security">
+	<description>Coding standards for ft-security</description>
+
+	<file>.</file>
+
+	<!--
+	<exclude-pattern>*/bin/*</exclude-pattern>
+	<exclude-pattern>*/tests/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern> -->
+
+	<!--
+	is created during composer install,
+	when package is tested
+	and not running within ft-platform
+	-->
+	<exclude-pattern>*/wp-content/*</exclude-pattern>
+
+	<!-- Use figuren.theater Coding Standards -->
+	<rule ref="figurentheater" />
+
+	<!-- Working with the old $phpmailer object is quite modern, so  ;) -->
+	<rule ref="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase">
+		<exclude-pattern>inc/smtp/namespace\.php</exclude-pattern>
+	</rule>
+
+	<!-- Allow to use text-domain strings from required plugins -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="figurentheater"/>
+				<element value="two-factor"/>
+			</property>
+		</properties>
+	</rule>
+
+</ruleset>

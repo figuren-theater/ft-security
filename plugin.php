@@ -9,7 +9,7 @@
  * Domain Path:     /languages
  * Version:         1.3.3
  *
- * @package         figuren-theater/security
+ * @package         figuren-theater/ft-security
  */
 
 namespace Figuren_Theater\Security;

@@ -1,44 +1,47 @@
 {
 	"name": "figuren-theater/ft-security",
 	"description": "Security related components for a WordPress Multisite network, like figuren.theater",
-    "homepage": "https://websites.fuer.figuren.theater",
-    "type": "wordpress-muplugin",
-    "keywords": ["wordpress", "security", "anti-spam", "brute-force-protection", "haveibeenpwned", "passwords-strength", "two-factor"],
-    "license": "GPL-3.0-or-later",
-    "authors": [
-        {
-            "name": "figuren.theater",
-            "email": "info@figuren.theater"
-        },
-        {
-            "name": "Carsten Bach",
-            "email": "mail@carsten-bach.de",
-            "homepage": "https://carsten-bach.de",
-            "role": "Developer"
-        }
-    ],
-    "support": {
-        "email": "info@figuren.theater",
-        "issues": "https://github.com/figuren-theater/ft-security/issues",
-        "source": "https://github.com/figuren-theater/ft-security"
-    },
-	"autoload": {
-		"files": [
-			"inc/disable-login-errors/namespace.php",
-            "inc/email-address-encoder/namespace.php",
-			"inc/limit-login-attempts-reloaded/namespace.php",
-			"inc/passwords-evolved/namespace.php",
-			"inc/passwords-not-weak/namespace.php",
-            "inc/passwords-strong/namespace.php",
-			"inc/smtp/namespace.php",
-			"inc/two-factor/namespace.php",
-            "inc/wp-author-slug/namespace.php",
-			"inc/wps-hide-login/namespace.php",
-			"inc/namespace.php"
-		],
-        "classmap": [
-            "inc/"
-        ]
+	"license": "GPL-3.0-or-later",
+	"type": "wordpress-muplugin",
+	"keywords": [
+		"wordpress",
+		"security",
+		"anti-spam",
+		"brute-force-protection",
+		"haveibeenpwned",
+		"passwords-strength",
+		"two-factor"
+	],
+	"authors": [
+		{
+			"name": "figuren.theater",
+			"email": "info@figuren.theater"
+		},
+		{
+			"name": "Carsten Bach",
+			"email": "mail@carsten-bach.de",
+			"homepage": "https://carsten-bach.de",
+			"role": "Developer"
+		}
+	],
+	"homepage": "https://websites.fuer.figuren.theater",
+	"support": {
+		"email": "info@figuren.theater",
+		"issues": "https://github.com/figuren-theater/ft-security/issues",
+		"source": "https://github.com/figuren-theater/ft-security"
+	},
+	"require": {
+		"php": ">=7.1",
+		"figuren-theater/ft-options": "^1",
+		"wpackagist-plugin/email-address-encoder": "^1.0",
+		"wpackagist-plugin/limit-login-attempts-reloaded": "^2.25",
+		"wpackagist-plugin/passwords-evolved": "^1",
+		"wpackagist-plugin/two-factor": "^0.8",
+		"wpackagist-plugin/wp-author-slug": "^4",
+		"wpackagist-plugin/wps-hide-login": "^1.9"
+	},
+	"require-dev": {
+		"figuren-theater/code-quality": "^0.6.6"
 	},
 	"repositories": [
 		{
@@ -47,29 +50,45 @@
 		},
 		{
 			"type": "composer",
-			"url" : "https://wpackagist.org"
+			"url": "https://wpackagist.org"
 		}
 	],
-	"require": {
-        "php": ">=7.1",
-        "figuren-theater/ft-options": "^1",
-        "wpackagist-plugin/email-address-encoder": "^1.0",
-        "wpackagist-plugin/limit-login-attempts-reloaded":"^2.25",
-        "wpackagist-plugin/passwords-evolved": "^1",
-        "wpackagist-plugin/two-factor":"^0.8",
-        "wpackagist-plugin/wp-author-slug":"^4",
-        "wpackagist-plugin/wps-hide-login": "^1.9"
+	"autoload": {
+		"classmap": [
+			"inc/"
+		],
+		"files": [
+			"inc/disable-login-errors/namespace.php",
+			"inc/email-address-encoder/namespace.php",
+			"inc/limit-login-attempts-reloaded/namespace.php",
+			"inc/passwords-evolved/namespace.php",
+			"inc/passwords-not-weak/namespace.php",
+			"inc/passwords-strong/namespace.php",
+			"inc/smtp/namespace.php",
+			"inc/two-factor/namespace.php",
+			"inc/wp-author-slug/namespace.php",
+			"inc/wps-hide-login/namespace.php",
+			"inc/namespace.php"
+		]
 	},
-    "extra": {
-        "altis": {
-            "install-overrides": [
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true,
+			"phpstan/extension-installer": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"ergebnis/composer-normalize": true
+		}
+	},
+	"extra": {
+		"altis": {
+			"install-overrides": [
 				"wpackagist-plugin/email-address-encoder",
 				"wpackagist-plugin/limit-login-attempts-reloaded",
 				"wpackagist-plugin/passwords-evolved",
 				"wpackagist-plugin/two-factor",
-                "wpackagist-plugin/wp-author-slug",
+				"wpackagist-plugin/wp-author-slug",
 				"wpackagist-plugin/wps-hide-login"
-            ]
-        }
-    }
+			]
+		}
+	}
 }
