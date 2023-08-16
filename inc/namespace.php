@@ -2,29 +2,29 @@
 /**
  * Figuren_Theater Security.
  *
- * @package figuren-theater/security
+ * @package figuren-theater/ft-security
  */
 
 namespace Figuren_Theater\Security;
 
-use WP_ENVIRONMENT_TYPE;
-
 use Altis;
-use function Altis\register_module;
 
+use WP_ENVIRONMENT_TYPE;
 
 /**
  * Register module.
+ *
+ * @return void
  */
-function register() {
+function register() :void {
 
 	$default_settings = [
-		'enabled'                       => true, // needs to be set
+		'enabled'                       => true, // Needs to be set.
 		'limit-login-attempts-reloaded' => 'local' !== WP_ENVIRONMENT_TYPE,
 		'smtp'                          => 'local' !== WP_ENVIRONMENT_TYPE,
 		'two-factor'                    => 'local' !== WP_ENVIRONMENT_TYPE,
 	];
-	
+
 	$options = [
 		'defaults' => $default_settings,
 	];
@@ -40,18 +40,20 @@ function register() {
 
 /**
  * Bootstrap module, when enabled.
+ *
+ * @return void
  */
-function bootstrap() {
+function bootstrap() :void {
 
-	// Plugins
+	// Plugins.
 	Email_Address_Encoder\bootstrap();
 	Limit_Login_Attempts_Reloaded\bootstrap();
 	Passwords_Evolved\bootstrap();
 	Two_Factor\bootstrap();
 	WP_Author_Slug\bootstrap();
 	Wps_Hide_Login\bootstrap();
-	
-	// Best practices
+
+	// Best practices.
 	Disable_Login_Errors\bootstrap();
 	Passwords_Not_Weak\bootstrap();
 	Passwords_Strong\bootstrap();

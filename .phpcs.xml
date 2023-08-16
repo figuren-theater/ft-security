@@ -19,13 +19,19 @@
 	<!-- Use figuren.theater Coding Standards -->
 	<rule ref="figurentheater" />
 
-	<!--
+	<!-- Working with the old $phpmailer object is quite modern, so  ;) -->
+	<rule ref="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase">
+		<exclude-pattern>inc/smtp/namespace\.php</exclude-pattern>
+	</rule>
+
+	<!-- Allow to use text-domain strings from required plugins -->
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
 				<element value="figurentheater"/>
+				<element value="two-factor"/>
 			</property>
 		</properties>
-	</rule> -->
+	</rule>
 
 </ruleset>

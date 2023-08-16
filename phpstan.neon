@@ -1,7 +1,8 @@
 #$ vendor/bin/phpstan analyze
 
 parameters:
-    level: max
+	# leaving level 9 because a user_login comes a UNCHANGEABLE mixed ?! :(
+    level: 8
     inferPrivatePropertyTypeFromConstructor: true
     paths:
         - inc/
@@ -15,6 +16,7 @@ parameters:
             - wp-content/
             - tests/
     ignoreErrors:
+        - '#Constant WP_ENVIRONMENT_TYPE not found\.#'
         # Find a nicer way instead of ignoring this Error on every ft-module
         - '#Function Altis\\register_module not found\.#'
         - '#Function Figuren_Theater\\get_config not found\.#'
