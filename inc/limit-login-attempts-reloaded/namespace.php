@@ -75,7 +75,7 @@ function filter_options() :void {
 		'limit_login_allow_local_options'            => 0, // Do not use FALSE, because it gets handled as "non existing option", so the query will be done.
 
 		// Not only 'activation', but also the 'last updated' timestamp.
-		'limit_login_activation_timestamp'           => filemtime( PLUGINPATH ),
+		'limit_login_activation_timestamp'           => filemtime( FT_VENDOR_DIR . PLUGINPATH ),
 		'limit_login_notice_enable_notify_timestamp' => time(),
 		'limit_login_active_app'                     => 'local',
 		'limit_login_admin_notify_email'             => getenv( 'FT_SECURITY_LLAR_EMAIL' ),
