@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-security/compare/1.4.1...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-security/compare/1.4.2...HEAD)
+
+## [1.4.2](https://github.com/figuren-theater/ft-security/compare/1.4.1...1.4.2) - 2023-09-02
+
+### Dependency Updates & Maintenance
+
+- Upgrading figuren-theater/code-quality (0.6.7 => 0.7.0) ([#38](https://github.com/figuren-theater/ft-security/pull/38))
 
 ## [1.4.1](https://github.com/figuren-theater/ft-security/compare/1.4.0...1.4.1) - 2023-09-01
 
