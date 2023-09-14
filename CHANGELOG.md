@@ -2,7 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-security/compare/1.4.2...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-security/compare/1.4.3...HEAD)
+
+## [1.4.3](https://github.com/figuren-theater/ft-security/compare/1.4.2...1.4.3) - 2023-09-14
+
+### Dependency Updates & Maintenance
+
+- Upgrading figuren-theater/ft-options (1.1.11 => 1.2.3) ([#43](https://github.com/figuren-theater/ft-security/pull/43))
+- Bump wpackagist-plugin/limit-login-attempts-reloaded from 2.25.24 to 2.25.25 ([#39](https://github.com/figuren-theater/ft-security/pull/39))
+- Bump wpackagist-plugin/two-factor from 0.8.1 to 0.8.2 ([#40](https://github.com/figuren-theater/ft-security/pull/40))
+- Bump figuren-theater/code-quality from 0.7.0 to 0.7.1 ([#42](https://github.com/figuren-theater/ft-security/pull/42))
 
 ## [1.4.2](https://github.com/figuren-theater/ft-security/compare/1.4.1...1.4.2) - 2023-09-02
 
