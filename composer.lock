@@ -301,15 +301,15 @@
         },
         {
             "name": "wpackagist-plugin/two-factor",
-            "version": "0.8.1",
+            "version": "0.8.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/two-factor/",
-                "reference": "tags/0.8.1"
+                "reference": "tags/0.8.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/two-factor.0.8.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/two-factor.0.8.2.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
