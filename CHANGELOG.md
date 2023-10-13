@@ -2,7 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-security/compare/1.4.3...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-security/compare/1.4.4...HEAD)
+
+## [1.4.4](https://github.com/figuren-theater/ft-security/compare/1.4.3...1.4.4) - 2023-10-13
+
+### Security
+
+- Deprecate 'wissen-ist-macht' endpoint and send every request to home instead. ([#45](https://github.com/figuren-theater/ft-security/pull/45))
+
+### Dependency Updates & Maintenance
+
+- Bump figuren-theater/code-quality from 0.7.1 to 0.8.1 ([#45](https://github.com/figuren-theater/ft-security/pull/45))
 
 ## [1.4.3](https://github.com/figuren-theater/ft-security/compare/1.4.2...1.4.3) - 2023-09-14
 
