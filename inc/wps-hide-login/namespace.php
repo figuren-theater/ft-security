@@ -112,7 +112,7 @@ function filter_options() :void {
 
 	$_options = [
 		'whl_page'           => getenv( 'FT_SECURITY_LOGIN_SLUG' ),
-		'whl_redirect_admin' => 'wissen-ist-macht',
+		'whl_redirect_admin' => '', // Maybe it was better to send the requests to a trackable endpoint like 'wissen-ist-macht', but it should be a cacheable one!
 		'whl_redirect'       => null, // Deprecated and unused, but not uncalled. The plugin looks if this exists and wants to delete_option() if any, so we add a nice return to prevent the lookup.
 	];
 
