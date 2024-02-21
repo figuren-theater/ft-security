@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "79c6b465d9e37f3ad1a227521d1294ba",
+    "content-hash": "77d6cad5d4fae3eac86bccb699688590",
     "packages": [
         {
             "name": "composer/installers",
@@ -347,15 +347,15 @@
         },
         {
             "name": "wpackagist-plugin/wps-hide-login",
-            "version": "1.9.9",
+            "version": "1.9.13.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wps-hide-login/",
-                "reference": "tags/1.9.9"
+                "reference": "tags/1.9.13.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wps-hide-login.1.9.9.zip"
+                "url": "https://downloads.wordpress.org/plugin/wps-hide-login.1.9.13.2.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -1883,5 +1883,5 @@
         "php": ">=7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
