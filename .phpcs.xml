@@ -3,11 +3,7 @@
 	<description>Coding standards for ft-security</description>
 
 	<file>.</file>
-
-	<!--
-	<exclude-pattern>*/bin/*</exclude-pattern>
-	<exclude-pattern>*/tests/*</exclude-pattern>
-	<exclude-pattern>*/vendor/*</exclude-pattern> -->
+	<arg name="basepath" value="./"/><!-- Strip the file paths down to the relevant bit -->
 
 	<!--
 	is created during composer install,
@@ -30,6 +26,7 @@
 			<property name="text_domain" type="array">
 				<element value="figurentheater"/>
 				<element value="two-factor"/>
+				<element value="default"/>
 			</property>
 		</properties>
 	</rule>
