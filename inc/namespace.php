@@ -16,7 +16,7 @@ use WP_ENVIRONMENT_TYPE;
  *
  * @return void
  */
-function register() :void {
+function register(): void {
 
 	$default_settings = [
 		'enabled'                       => true, // Needs to be set.
@@ -43,7 +43,7 @@ function register() :void {
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	// Plugins.
 	Email_Address_Encoder\bootstrap();

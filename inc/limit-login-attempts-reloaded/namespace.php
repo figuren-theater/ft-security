@@ -22,7 +22,7 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -34,7 +34,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	$config = Figuren_Theater\get_config()['modules']['security'];
 	if ( ! $config['limit-login-attempts-reloaded'] ) {
@@ -55,11 +55,11 @@ function load_plugin() :void {
 /**
  * Handle site-options
  *
- * @param array<string, string> $active_sitewide_plugins Array of site-wide installed plugins
+ * @param array<string, string> $active_sitewide_plugins Array of site-wide installed plugins.
  *
  * @return array<string, string>
  */
-function filter_site_option( array $active_sitewide_plugins ) :array {
+function filter_site_option( array $active_sitewide_plugins ): array {
 	$active_sitewide_plugins[ BASENAME ] = BASENAME;
 	return $active_sitewide_plugins;
 }
@@ -69,7 +69,7 @@ function filter_site_option( array $active_sitewide_plugins ) :array {
  *
  * @return void
  */
-function filter_options() :void {
+function filter_options(): void {
 
 	$_options = [
 		'limit_login_allow_local_options'            => 0, // Do not use FALSE, because it gets handled as "non existing option", so the query will be done.
@@ -129,7 +129,7 @@ function filter_options() :void {
 /**
  * Disables the annoying dashboard admin notice to leave a review on the plugin.
  */
-function remove_admin_notice() : void {
+function remove_admin_notice(): void {
 
 	global $limit_login_attempts_obj;
 	remove_action( 'admin_notices', [ $limit_login_attempts_obj, 'show_leave_review_notice' ] );
@@ -140,6 +140,6 @@ function remove_admin_notice() : void {
  *
  * @return void
  */
-function remove_menu() :void {
+function remove_menu(): void {
 	remove_submenu_page( 'settings.php', 'limit-login-attempts' );
 }

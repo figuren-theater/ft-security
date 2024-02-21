@@ -16,13 +16,13 @@
 
 namespace Figuren_Theater\Security\Passwords_Strong;
 
+use WP_Error;
+use function __;
 use function add_action;
 use function add_filter;
 use function is_wp_error;
 use function sanitize_text_field;
 use function wp_unslash;
-use function __;
-use WP_Error;
 
 /**
  * Set up hooks.
@@ -38,7 +38,7 @@ function bootstrap() {
  *
  * @return void
  */
-function load() :void {
+function load(): void {
 	// Called via wp-admin/includes/user.php from a logged-in user.
 	add_action( 'user_profile_update_errors', __NAMESPACE__ . '\\user_profile_update_errors', 0, 3 );
 	// Called via wp-login.php from a maybe logged-in user.
@@ -57,7 +57,7 @@ function load() :void {
  *
  * @return void
  */
-function user_profile_update_errors( $errors, $update, $user_data ) :void {
+function user_profile_update_errors( $errors, $update, $user_data ): void {
 	validate_password_reset( $errors, $user_data );
 }
 
@@ -70,19 +70,19 @@ function user_profile_update_errors( $errors, $update, $user_data ) :void {
  *
  * @return void
  */
-function resetpass_form( $user_data ) :void {
+function resetpass_form( $user_data ): void {
 	validate_password_reset( false, $user_data );
 }
 
 /**
  * Sanitise the input parameters and then check the password strength.
  *
- * @param \WP_Error|false $errors                       WP_Error object (passed by reference).
+ * @param \WP_Error|false              $errors                       WP_Error object (passed by reference).
  * @param \WP_User|\stdClass|\WP_Error $user_data WordPress User object, or embrional stdClass with all methods of a User object or WP_Error if no user exists at all.
  *
  * @return void
  */
-function validate_password_reset( $errors, $user_data ) :void {
+function validate_password_reset( $errors, $user_data ): void {
 	$is_password_ok = false;
 
 	$user_name = null;
@@ -99,8 +99,6 @@ function validate_password_reset( $errors, $user_data ) :void {
 		$user_name = sanitize_text_field( $_post_data['user_login'] );
 	} elseif ( isset( $user_data->user_login ) ) {
 		$user_name = $user_data->user_login;
-	} else {
-		// No user specified.
 	}
 
 	$password = null;
@@ -110,26 +108,22 @@ function validate_password_reset( $errors, $user_data ) :void {
 
 	$error_message  = null;
 	$is_password_ok = is_password_ok( \strval( $password ), $user_name );
+	// phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedIf
 	if ( is_null( $password ) ) {
 		// Don't do anything if there isn't a password to check.
-	
+	// phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedElseif
 	} elseif ( is_wp_error( $errors ) && $errors->get_error_data( 'pass' ) ) {
 		// We've already got a password-related error.
-	
 	} elseif ( empty( $user_name ) ) {
-		// @todo #30 Find a way to re-use core i18n string without violationg coding standards
-		// phpcs:ignore WordPress.WP.I18n.MissingArgDomain
-		$error_message = __( 'User name cannot be empty.' );
+		$error_message = __( 'User name cannot be empty.', 'default' );
 	} elseif ( ! ( $is_password_ok ) ) {
 		$error_message = apply_filters(
 			__NAMESPACE__ . '\\error',
 			// @todo #30 Find a way to re-use core i18n string without violationg coding standards
-			// phpcs:ignore WordPress.WP.I18n.MissingArgDomain
-			__( 'Password is not strong enough.' )
+			__( 'Password is not strong enough.', 'default' )
 		);
-	} else {
-		// Password is strong enough. All OK.
 	}
+	// Password is strong enough. All OK.
 
 	if ( ! empty( $error_message ) ) {
 		$error_message = '<strong>ERROR</strong>: ' . $error_message;
@@ -139,8 +133,6 @@ function validate_password_reset( $errors, $user_data ) :void {
 			$errors->add( 'pass', $error_message );
 		}
 	}
-
-	// Lets see what this will return : // return $errors;  ???
 }
 
 /**
@@ -151,7 +143,7 @@ function validate_password_reset( $errors, $user_data ) :void {
  *
  * @return boolean
  */
-function is_password_ok( string $password, string $user_name ) :bool {
+function is_password_ok( string $password, string $user_name ): bool {
 	// Default to the password not being valid - fail safe.
 	$is_ok = false;
 
@@ -169,9 +161,9 @@ function is_password_ok( string $password, string $user_name ) :bool {
 		// Too short.
 		add_filter(
 			__NAMESPACE__ . '\\error',
-			function ( string $error ) : string {
-				return $error . PHP_EOL . PHP_EOL .
-					__( 'Your password must have at least 8 characters.', 'figurentheater' );
+			function ( string $error ): string {
+				return $error . PHP_EOL . PHP_EOL
+					. __( 'Your password must have at least 8 characters.', 'figurentheater' );
 			},
 			10,
 			1
@@ -182,9 +174,9 @@ function is_password_ok( string $password, string $user_name ) :bool {
 		// User name and password can't be the same.
 		add_filter(
 			__NAMESPACE__ . '\\error',
-			function ( string $error ) : string {
-				return $error . PHP_EOL . PHP_EOL .
-					__( 'Your User name and password can\'t be the same.', 'figurentheater' );
+			function ( string $error ): string {
+				return $error . PHP_EOL . PHP_EOL
+					. __( 'Your User name and password can\'t be the same.', 'figurentheater' );
 			},
 			10,
 			1
@@ -195,9 +187,9 @@ function is_password_ok( string $password, string $user_name ) :bool {
 		// ...
 		add_filter(
 			__NAMESPACE__ . '\\error',
-			function ( string $error ) : string {
-				return $error . PHP_EOL .
-					__( 'Your password must contain at least one number.', 'figurentheater' );
+			function ( string $error ): string {
+				return $error . PHP_EOL
+					. __( 'Your password must contain at least one number.', 'figurentheater' );
 			},
 			10,
 			1
@@ -208,9 +200,9 @@ function is_password_ok( string $password, string $user_name ) :bool {
 		// ...
 		add_filter(
 			__NAMESPACE__ . '\\error',
-			function ( string $error ) : string {
-				return $error . PHP_EOL . PHP_EOL .
-					__( 'Your password must contain at least one lowercase letter.', 'figurentheater' );
+			function ( string $error ): string {
+				return $error . PHP_EOL . PHP_EOL
+					. __( 'Your password must contain at least one lowercase letter.', 'figurentheater' );
 			},
 			10,
 			1
@@ -221,9 +213,9 @@ function is_password_ok( string $password, string $user_name ) :bool {
 		// ...
 		add_filter(
 			__NAMESPACE__ . '\\error',
-			function ( string $error ) : string {
-				return $error . PHP_EOL .
-					__( 'Your password must contain at least one uppercase letter.', 'figurentheater' );
+			function ( string $error ): string {
+				return $error . PHP_EOL
+					. __( 'Your password must contain at least one uppercase letter.', 'figurentheater' );
 			},
 			10,
 			1
@@ -234,9 +226,9 @@ function is_password_ok( string $password, string $user_name ) :bool {
 		// ...
 		add_filter(
 			__NAMESPACE__ . '\\error',
-			function ( string $error ) : string {
-				return $error . PHP_EOL .
-					__( 'Your password must contain at least one symbol.', 'figurentheater' );
+			function ( string $error ): string {
+				return $error . PHP_EOL
+					. __( 'Your password must contain at least one symbol.', 'figurentheater' );
 			},
 			10,
 			1

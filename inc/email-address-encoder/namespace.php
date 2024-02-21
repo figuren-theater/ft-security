@@ -24,7 +24,7 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 	/*
 	 * The Plugin allows to define the following constants for convenience.
 	 *
@@ -47,7 +47,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	require_once FT_VENDOR_DIR . PLUGINPATH; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 
@@ -71,7 +71,7 @@ function load_plugin() :void {
  *
  * @return string The path to the MO file or an empty string if unloading is needed.
  */
-function unload_i18n( string $mofile, string $domain ) : string {
+function unload_i18n( string $mofile, string $domain ): string {
 	// Check if the domain is 'email-address-encoder'.
 	if ( 'email-address-encoder' === $domain ) {
 		// If the domain is 'email-address-encoder', prevent loading and return an empty string.
@@ -87,11 +87,11 @@ function unload_i18n( string $mofile, string $domain ) : string {
  *
  * @return void
  */
-function filter_options() :void {
+function filter_options(): void {
 
 	$_options = [
 		'eae_filter_priority' => 1000,
-		'eae_search_in' => 'filters',
+		'eae_search_in'       => 'filters',
 		// lets see what the automatic email-detector will tell us,
 		// but only us and only locally
 		//
@@ -103,7 +103,7 @@ function filter_options() :void {
 		//
 		// 'eae_notices' => ( \WP_DEBUG ) ? '0' : '1',
 		// the Admin_Bar/email-encoder.js is not working.
-		'eae_notices' => '1',
+		'eae_notices'         => '1',
 	];
 
 	/*
@@ -122,6 +122,6 @@ function filter_options() :void {
  *
  * @return void
  */
-function remove_menu() :void {
+function remove_menu(): void {
 	remove_submenu_page( 'options-general.php', 'eae' );
 }

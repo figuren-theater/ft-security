@@ -8,15 +8,12 @@
 namespace Figuren_Theater\Security\Wps_Hide_Login;
 
 use Figuren_Theater\Options;
-
 use FT_VENDOR_DIR;
-
+use WPS\WPS_Hide_Login;
 use function add_action;
-
 use function add_filter;
 use function remove_action;
 use function remove_submenu_page;
-use WPS\WPS_Hide_Login;
 
 const BASENAME   = 'wps-hide-login/wps-hide-login.php';
 const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
@@ -26,7 +23,7 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'Figuren_Theater\loaded', __NAMESPACE__ . '\\filter_options', 11 );
 
@@ -38,7 +35,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	// Do not "require_once FT_VENDOR_DIR . '/' . BASENAME;" like normally, but instead load the later called autoloader.
 
@@ -46,15 +43,15 @@ function load_plugin() :void {
 	add_action( 'admin_init', __NAMESPACE__ . '\\remove_settings_section', 11 );
 
 	// Define Plugin constants, that are normally loaded by the plugin itself.
-	define( 'WPS_HIDE_LOGIN_VERSION', '1.9.6' );
-	define( 'WPS_HIDE_LOGIN_FOLDER', 'wps-hide-login' );
+	define( 'WPS_HIDE_LOGIN_VERSION', '1.9.13.2' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
+	define( 'WPS_HIDE_LOGIN_FOLDER', 'wps-hide-login' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 
 	// Usually this would look like: define( 'WPS_HIDE_LOGIN_URL', plugin_dir_url( __FILE__ ) );.
-	define( 'WPS_HIDE_LOGIN_URL', FT_VENDOR_URL . '/wpackagist-plugin/' . WPS_HIDE_LOGIN_FOLDER . '/' );
+	define( 'WPS_HIDE_LOGIN_URL', FT_VENDOR_URL . '/wpackagist-plugin/' . WPS_HIDE_LOGIN_FOLDER . '/' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 
 	// Usually this would look like: define( 'WPS_HIDE_LOGIN_DIR', plugin_dir_path( __FILE__ ) );.
-	define( 'WPS_HIDE_LOGIN_DIR', FT_VENDOR_DIR . '/wpackagist-plugin/' . WPS_HIDE_LOGIN_FOLDER . '/' );
-	define( 'WPS_HIDE_LOGIN_BASENAME', BASENAME );
+	define( 'WPS_HIDE_LOGIN_DIR', FT_VENDOR_DIR . '/wpackagist-plugin/' . WPS_HIDE_LOGIN_FOLDER . '/' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
+	define( 'WPS_HIDE_LOGIN_BASENAME', BASENAME ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 
 	require_once WPS_HIDE_LOGIN_DIR . 'autoload.php'; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingCustomConstant
 
@@ -73,7 +70,7 @@ function load_plugin() :void {
  *
  * @return void
  */
-function plugins_loaded_wps_hide_login_plugin() :void {
+function plugins_loaded_wps_hide_login_plugin(): void {
 
 	$_wps_plugin = WPS_Hide_Login\Plugin::get_instance();
 	add_filter( 'load_textdomain_mofile', __NAMESPACE__ . '\\unload_i18n', 0, 2 );
@@ -92,7 +89,7 @@ function plugins_loaded_wps_hide_login_plugin() :void {
  *
  * @return string The path to the MO file or an empty string if unloading is needed.
  */
-function unload_i18n( string $mofile, string $domain ) : string {
+function unload_i18n( string $mofile, string $domain ): string {
 	// Check if the domain is 'wps-hide-login'.
 	if ( 'wps-hide-login' === $domain ) {
 		// If the domain is 'wps-hide-login', prevent loading and return an empty string.
@@ -108,7 +105,7 @@ function unload_i18n( string $mofile, string $domain ) : string {
  *
  * @return void
  */
-function filter_options() :void {
+function filter_options(): void {
 
 	$_options = [
 		'whl_page'           => getenv( 'FT_SECURITY_LOGIN_SLUG' ),
@@ -138,7 +135,7 @@ function filter_options() :void {
  *
  * @return void
  */
-function remove_menu() :void {
+function remove_menu(): void {
 	remove_submenu_page( 'options-general.php', 'whl_settings' );
 }
 
@@ -149,8 +146,7 @@ function remove_menu() :void {
  *
  * @return void
  */
-function remove_settings_section() :void {
+function remove_settings_section(): void {
 	global $wp_settings_sections;
-
 	unset( $wp_settings_sections['general']['wps-hide-login-section'] );
 }

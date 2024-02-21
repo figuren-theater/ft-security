@@ -8,17 +8,14 @@
 namespace Figuren_Theater\Security\Two_Factor;
 
 use DOING_AUTOSAVE;
-
 use DOING_CRON;
 use Figuren_Theater;
-
 use FT_VENDOR_DIR;
+use WP_INSTALLING;
 use function add_action;
 use function add_filter;
-
 use function get_userdata;
 use function wp_strip_all_tags;
-use WP_INSTALLING;
 
 const BASENAME   = 'two-factor/two-factor.php';
 const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
@@ -28,7 +25,7 @@ const PLUGINPATH = '/wpackagist-plugin/' . BASENAME;
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'plugins_loaded', __NAMESPACE__ . '\\load_plugin', 9 );
 }
@@ -38,7 +35,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin() :void {
+function load_plugin(): void {
 
 	$config = Figuren_Theater\get_config()['modules']['security'];
 	if ( ! $config['two-factor'] ) {
@@ -77,7 +74,7 @@ function load_plugin() :void {
 	// `two_factor_enabled_providers_for_user` filter overrides the list of two-factor providers enabled for a user.
 	// First argument is an array of enabled provider classnames as values, the second argument is the user ID.
 	add_filter( 'two_factor_enabled_providers_for_user', __NAMESPACE__ . '\\enable_email_provider' );
-	add_filter( 'two_factor_primary_provider_for_user', __NAMESPACE__ . '\\email_as_default_primary_provider', 10, 2 );
+	add_filter( 'two_factor_primary_provider_for_user', __NAMESPACE__ . '\\email_as_default_primary_provider', 10 );
 }
 
 /**
@@ -90,7 +87,7 @@ function load_plugin() :void {
  *
  * @return string[]
  */
-function remove_providers( array $providers ) :array {
+function remove_providers( array $providers ): array {
 	if ( isset( $providers['Two_Factor_Dummy'] ) ) {
 		unset( $providers['Two_Factor_Dummy'] );
 	}
@@ -117,11 +114,11 @@ function remove_providers( array $providers ) :array {
  * And enables 'Email', if its not present yet.
  * First argument is an array of enabled provider classnames as values, the second argument is the user ID.
  *
- * @param string[]  $providers The enabled providers.
+ * @param string[] $providers The enabled providers.
  *
  * @return string[]
  */
-function enable_email_provider( array $providers ) :array {
+function enable_email_provider( array $providers ): array {
 	if ( ! isset( array_flip( $providers )['Two_Factor_Email'] ) ) {
 		$providers[] = 'Two_Factor_Email';
 	}
@@ -133,10 +130,11 @@ function enable_email_provider( array $providers ) :array {
  *
  * And sets 'Email' as default, if nothing (=no 2FA) is set.
  *
- * @param string $provider The provider currently being used.
- * @param int    $user_id  The user ID.
+ * @param  string $provider The provider currently being used.
+ * 
+ * @return string
  */
-function email_as_default_primary_provider( string $provider, int $user_id ) : string {
+function email_as_default_primary_provider( string $provider ): string {
 	if ( empty( $provider ) ) {
 		$provider = 'Two_Factor_Email';
 	}
@@ -154,11 +152,12 @@ function email_as_default_primary_provider( string $provider, int $user_id ) : s
  *
  * @return string
  */
-function email_message( string $message, string $token, int $user_id ) :string {
+function email_message( string $message, string $token, int $user_id ): string {
 
 	/* translators: %s: token */
 	$message = wp_strip_all_tags(
 		sprintf(
+			/* translators: %s: 2FA Login Token */
 			__( 'Dein aktueller Login-Bestätigungs-Code lautet: %s', 'two-factor' ),
 			// by using a dummy over here
 			// we can stay with the i18n
@@ -201,4 +200,3 @@ function email_message( string $message, string $token, int $user_id ) :string {
 
 	return $message;
 }
-

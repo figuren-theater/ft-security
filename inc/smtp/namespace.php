@@ -8,16 +8,16 @@
 namespace Figuren_Theater\Security\SMTP;
 
 use Figuren_Theater;
+use PHPMailer\PHPMailer;
 use function add_action;
 use function get_bloginfo;
-use PHPMailer\PHPMailer;
 
 /**
  * Bootstrap module, when enabled.
  *
  * @return void
  */
-function bootstrap() :void {
+function bootstrap(): void {
 
 	add_action( 'phpmailer_init', __NAMESPACE__ . '\\load_plugin' );
 }
@@ -29,7 +29,7 @@ function bootstrap() :void {
  *
  * @return void
  */
-function load_plugin( PHPMailer\PHPMailer $phpmailer ) :void {
+function load_plugin( PHPMailer\PHPMailer $phpmailer ): void {
 
 	$config = Figuren_Theater\get_config()['modules']['security'];
 	if ( ! $config['smtp'] ) {
@@ -40,10 +40,10 @@ function load_plugin( PHPMailer\PHPMailer $phpmailer ) :void {
 		return;
 	}
 
-	defined( 'SMTP_HOST' ) || define( 'SMTP_HOST', getenv( 'FT_SMTP_HOST' ) );
-	defined( 'SMTP_PORT' ) || define( 'SMTP_PORT', getenv( 'FT_SMTP_PORT' ) );
-	defined( 'SMTP_USER' ) || define( 'SMTP_USER', getenv( 'FT_SMTP_USER' ) );
-	defined( 'SMTP_PASSWORD' ) || define( 'SMTP_PASSWORD', getenv( 'FT_SMTP_PASSWORD' ) );
+	defined( 'SMTP_HOST' ) || define( 'SMTP_HOST', getenv( 'FT_SMTP_HOST' ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
+	defined( 'SMTP_PORT' ) || define( 'SMTP_PORT', getenv( 'FT_SMTP_PORT' ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
+	defined( 'SMTP_USER' ) || define( 'SMTP_USER', getenv( 'FT_SMTP_USER' ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
+	defined( 'SMTP_PASSWORD' ) || define( 'SMTP_PASSWORD', getenv( 'FT_SMTP_PASSWORD' ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 
 	$phpmailer->isSMTP();
 	$phpmailer->Host     = SMTP_HOST;

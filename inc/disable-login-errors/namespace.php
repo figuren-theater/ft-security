@@ -7,11 +7,10 @@
 
 namespace Figuren_Theater\Security\Disable_Login_Errors;
 
-use function add_action;
-
-use function add_filter;
-use function __;
 use WP_Error;
+use function __;
+use function add_action;
+use function add_filter;
 
 /**
  * Set up hooks.
@@ -30,12 +29,8 @@ function bootstrap() {
  *
  * @param      string   $username Username or email address.
  * @param      WP_Error $error    A WP_Error object with the authentication failure details.
- *
- * @subpackage [subpackage]
- * @version    2022-10-13
- * @author     Carsten Bach
  */
-function load( string $username, WP_Error $error ) : void {
+function load( string $username, WP_Error $error ): void {
 
 	if ( empty( $error->errors ) ) {
 		return;
@@ -69,7 +64,6 @@ function load( string $username, WP_Error $error ) : void {
 		// Add our filter to prevent theese error message for security reasons.
 		add_filter( 'login_errors', __NAMESPACE__ . '\\nice_hint', 99, 1 );
 	}
-
 }
 
 /**
@@ -79,15 +73,9 @@ function load( string $username, WP_Error $error ) : void {
  * why a password might be wrong.
  * This helps securing the site, against external attacks.
  *
- * @subpackage [subpackage]
- * @version    2022-10-10
- * @author     Carsten Bach
- *
- * @param string $error Login error message.
- *
  * @return     string       General error text.
  */
-function nice_hint( string $error ) : string {
+function nice_hint(): string {
 
 	return sprintf(
 		'<strong>%1$s</strong><br>%2$s',
@@ -95,5 +83,3 @@ function nice_hint( string $error ) : string {
 		__( 'Alles auf Anfang, bitte!', 'figurentheater' )
 	);
 }
-
-
