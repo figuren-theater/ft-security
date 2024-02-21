@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-security/compare/1.4.4...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-security/compare/1.4.5...HEAD)
+
+## [1.4.5](https://github.com/figuren-theater/ft-security/compare/1.4.4...1.4.5) - 2024-02-21
+
+### Dependency Updates & Maintenance
+
+- Bump wpackagist-plugin/email-address-encoder from 1.0.22 to 1.0.23 ([#47](https://github.com/figuren-theater/ft-security/pull/47))
+- Bump wpackagist-plugin/limit-login-attempts-reloaded from 2.25.25 to 2.26.5 ([#55](https://github.com/figuren-theater/ft-security/pull/55))
+- Bump wpackagist-plugin/wps-hide-login from 1.9.9 to 1.9.13.2 ([#54](https://github.com/figuren-theater/ft-security/pull/54))
 
 ## [1.4.4](https://github.com/figuren-theater/ft-security/compare/1.4.3...1.4.4) - 2023-10-13
 
