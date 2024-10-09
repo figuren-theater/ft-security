@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c327e5918a57a5c149aaab74b2d5352f",
+    "content-hash": "2efff9b42d273ad97d359dceb314e685",
     "packages": [
         {
             "name": "composer/installers",
@@ -312,15 +312,15 @@
         },
         {
             "name": "wpackagist-plugin/two-factor",
-            "version": "0.8.2",
+            "version": "0.9.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/two-factor/",
-                "reference": "tags/0.8.2"
+                "reference": "tags/0.9.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/two-factor.0.8.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/two-factor.0.9.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
