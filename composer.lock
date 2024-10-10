@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8fb8378fd366ff530ad1fa102f4d0c1a",
+    "content-hash": "8ae1f7410dcc882b5636f43a0903fee7",
     "packages": [
         {
             "name": "composer/installers",
@@ -258,15 +258,15 @@
         },
         {
             "name": "wpackagist-plugin/email-address-encoder",
-            "version": "1.0.23",
+            "version": "1.0.24",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/email-address-encoder/",
-                "reference": "tags/1.0.23"
+                "reference": "tags/1.0.24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/email-address-encoder.1.0.23.zip"
+                "url": "https://downloads.wordpress.org/plugin/email-address-encoder.1.0.24.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
