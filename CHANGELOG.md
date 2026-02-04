@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/figuren-theater/ft-security/compare/1.5.1...HEAD)
+## [Unreleased](https://github.com/figuren-theater/ft-security/compare/1.6.0...HEAD)
+
+## [1.6.0](https://github.com/figuren-theater/ft-security/compare/1.5.1...1.6.0) - 2026-02-04
+
+- Update versions & deps ([#74](https://github.com/figuren-theater/ft-security/pull/74))
 
 ## [1.5.1](https://github.com/figuren-theater/ft-security/compare/1.5.0...1.5.1) - 2025-12-11
 
