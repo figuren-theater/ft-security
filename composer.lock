@@ -312,15 +312,15 @@
         },
         {
             "name": "wpackagist-plugin/two-factor",
-            "version": "0.14.2",
+            "version": "0.15.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/two-factor/",
-                "reference": "tags/0.14.2"
+                "reference": "tags/0.15.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/two-factor.0.14.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/two-factor.0.15.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -2239,12 +2239,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
