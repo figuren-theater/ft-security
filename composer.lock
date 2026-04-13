@@ -258,15 +258,15 @@
         },
         {
             "name": "wpackagist-plugin/email-address-encoder",
-            "version": "1.0.24",
+            "version": "1.0.25",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/email-address-encoder/",
-                "reference": "tags/1.0.24"
+                "reference": "tags/1.0.25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/email-address-encoder.1.0.24.zip"
+                "url": "https://downloads.wordpress.org/plugin/email-address-encoder.1.0.25.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -2239,12 +2239,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }
