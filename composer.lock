@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e6cd09a0af22820cafc5dcb610e5b42",
+    "content-hash": "58e14e9345df0d89ebc09dfef4326d1e",
     "packages": [
         {
             "name": "composer/installers",
@@ -330,15 +330,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-author-slug",
-            "version": "5",
+            "version": "6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-author-slug/",
-                "reference": "tags/5"
+                "reference": "tags/6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-author-slug.5.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-author-slug.6.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
